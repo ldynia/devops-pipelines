@@ -3,12 +3,18 @@ FROM python:3.7.9-alpine
 ARG PORT=8000
 ENV PORT=$PORT
 
-ENV HOME=/app
 ENV PYTHONUNBUFFERED=True
 ENV PYTHONIOENCODING=UTF-8
 
 WORKDIR /app
 COPY . /app
+
+RUN apk add \
+    gcc \
+    libpq \
+    musl-dev \
+    postgresql-dev
+RUN pip install -r /app/requirements.txt --no-cache-dir
 
 # Fixed permissions, create exec:exec and dev:dev
 RUN sed -i '/999/d;' /etc/group
@@ -23,6 +29,6 @@ RUN chmod -R a-w /etc
 EXPOSE ${PORT}
 VOLUME /app
 
-USER exec:dev
+# USER exec:dev
 
 ENTRYPOINT ["/app/scripts/startup.sh"]

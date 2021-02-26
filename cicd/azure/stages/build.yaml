@@ -1,0 +1,5 @@
+stages:
+  - stage: Build
+    displayName: Build
+    jobs:
+      - template: ../jobs/build.yaml

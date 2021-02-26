@@ -1,0 +1,5 @@
+stages:
+  - stage: Debug
+    displayName: Debug App
+    jobs:
+      - template: ../jobs/debug.yaml

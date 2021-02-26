@@ -1,12 +1,23 @@
 version: "3.8"
 services:
-  webapp:
+  app:
     build:
       context: ./app
       dockerfile: ../docker/Dockerfile
-    image: django/az-pipe
-    container_name: django-az-pipe
-    hostname: django-dev-az-pipe
+    image: django/pipelines
+    container_name: django-pipelines
+    hostname: django-dev-pipelines
+    depends_on:
+      - postgres
     volumes:
        - ./app:/app
     # command: sleep 3600
+  postgres:
+    image: postgres:9.5-alpine
+    container_name: django-pipelines-postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres

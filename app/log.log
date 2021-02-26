@@ -1,0 +1,16 @@
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+F
+======================================================================
+FAIL: test_endpoints (tests.test_api_rest.ApiTestCase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/app/tests/test_api_rest.py", line 13, in test_endpoints
+    self.assertEqual(response.status_code, 400)
+AssertionError: 200 != 400
+
+----------------------------------------------------------------------
+Ran 1 test in 0.021s
+
+FAILED (failures=1)
+Destroying test database for alias 'default'...

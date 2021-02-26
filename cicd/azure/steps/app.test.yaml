@@ -1,0 +1,25 @@
+steps:
+  - task: DownloadPipelineArtifact@2
+    displayName: Download App Artifact
+    inputs:
+      path: $(Build.ArtifactStagingdirectory)
+      artifact: AppImage
+
+  - task: Docker@2
+    displayName: Load App Image
+    inputs:
+      command: load
+      arguments: --input $(Build.ArtifactStagingdirectory)/app.image.tar
+
+  - task: Docker@2
+    displayName: Run App Image
+    inputs:
+      command: run
+      arguments: --rm --detach --name app $(imageArtifact)
+
+  - task: CmdLine@2
+    displayName: Run App Tests
+    inputs:
+      script: |
+        sleep 5s
+        docker exec app ./test.sh

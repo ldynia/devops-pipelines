@@ -1,0 +1,7 @@
+jobs:
+  - job: Debug
+    displayName: Debug
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - template: ../steps/debug.yaml

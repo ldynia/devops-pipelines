@@ -1,0 +1,34 @@
+steps:
+  - task: DownloadPipelineArtifact@2
+    displayName: Download App Artifact
+    inputs:
+      path: $(Build.ArtifactStagingdirectory)
+      artifact: AppImage
+
+  - task: Docker@2
+    displayName: Docker Load App Image
+    inputs:
+      command: load
+      arguments: --input $(Build.ArtifactStagingdirectory)/app.image.tar
+
+  - task: Docker@2
+    displayName: Docker Tag image
+    inputs:
+      command: tag
+      arguments: $(imageArtifact) $(DOCKER_HUB_USERNAME)/$(imageName):$(imageTag)
+
+  - task: Docker@2
+    displayName: Docker Logout
+    inputs:
+      command: logout
+
+  - task: CmdLine@2
+    displayName: Docker Login & Push
+    inputs:
+      script: |
+        printf "${YELLOW}DockerHub Login${NC}\n"
+        docker login -p $(DOCKER_HUB_PASSWORD) -u $(DOCKER_HUB_USERNAME)
+
+        printf "${YELLOW}DockerHub Push${NC}\n"
+        docker push $(imageArtifact)
+

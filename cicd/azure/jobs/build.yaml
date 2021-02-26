@@ -1,0 +1,7 @@
+jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - template: ../steps/app.build.yaml

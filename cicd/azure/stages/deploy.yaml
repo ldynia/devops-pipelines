@@ -1,0 +1,5 @@
+stages:
+  - stage: Deploy
+    displayName: Deploy
+    jobs:
+      - template: ../jobs/deploy.yaml

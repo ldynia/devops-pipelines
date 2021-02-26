@@ -20,5 +20,5 @@ from api.rest import hello
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/hello', hello.index),
+    path('api/foo', hello.foo),
 ]

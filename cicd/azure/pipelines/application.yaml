@@ -1,0 +1,18 @@
+trigger:
+  - pipeline
+
+resources:
+  - repo: self
+
+variables:
+  NC: '\033[0m'
+  YELLOW: '\033[0;33m'
+  commit: '$(Build.SourceVersion)'
+  imageTag: 'latest'
+  imageName: '$(DOCKER_HUB_USERNAME)/django-pipelines'
+  imageArtifact: '$(imageName):$(imageTag)'
+
+stages:
+  - template: ../stages/build.yaml
+  - template: ../stages/test.yaml
+  - template: ../stages/deploy.yaml

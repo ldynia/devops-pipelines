@@ -1,0 +1,7 @@
+jobs:
+  - job: Deploy
+    displayName: Deploy
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - template: ../steps/app.deploy.yaml

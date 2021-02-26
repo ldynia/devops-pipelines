@@ -8,6 +8,6 @@ class ApiTestCase(TestCase):
         client = Client()
 
     def test_endpoints(self):
-        response = self.client.get('/api/hello')
+        response = self.client.get('/api/foo')
 
         self.assertEqual(response.status_code, 200)

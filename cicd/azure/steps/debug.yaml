@@ -1,0 +1,23 @@
+steps:
+  - task: CmdLine@2
+    displayName: Debug
+    inputs:
+      script: |
+        printf "${YELLOW}Current working directory${NC}\n"
+        pwd
+
+        printf "${YELLOW}Files in current working directory '$PWD'${NC}\n"
+        ls -l $PWD
+
+        printf "${YELLOW}Docker: images${NC}\n"
+        if type docker > /dev/null; then
+            docker image ls
+        else
+            echo "Docker is not installed"
+        fi
+
+        printf "${YELLOW}Environment: variables${NC}\n"
+        env
+
+        printf "${YELLOW}Tree of current working directory '$PWD'${NC}\n"
+        tree $PWD
