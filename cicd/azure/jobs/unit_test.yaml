@@ -1,0 +1,7 @@
+jobs:
+  - job: UnitTest
+    displayName: Unit Test
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - template: ../steps/app.unit_test.yaml

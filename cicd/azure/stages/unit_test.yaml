@@ -1,0 +1,5 @@
+stages:
+  - stage: UnitTest
+    displayName: Unit Test
+    jobs:
+      - template: ../jobs/unit_test.yaml

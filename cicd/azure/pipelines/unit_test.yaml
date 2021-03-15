@@ -1,0 +1,10 @@
+variables:
+  NC: '\033[0m'
+  YELLOW: '\033[0;33m'
+  Commit: '$(Build.SourceVersion)'
+  BackendContainerName: 'app-backend'
+  BackendImageTag: 'latest'
+  BackendImageName: 'app-backend'
+  BackendImageArtifact: '$(BackendImageName):$(BackendImageTag)'
+stages:
+  - template: ../stages/unit_test.yaml
